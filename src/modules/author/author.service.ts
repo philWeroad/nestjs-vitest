@@ -8,7 +8,6 @@ export class AuthorDomainService {
 
   async getAuthor(id: string): Promise<AuthorEntity> {
     const author = await this.authorRepository.findOneOrFail(id);
-    console.log(author);
     return author;
   }
 }

@@ -8,7 +8,10 @@ export class AuthorDomainService {
   constructor(private readonly authorRepository: AuthorRepository) {}
 
   async getAuthor(id: string): Promise<AuthorEntity> {
-    const author = await this.authorRepository.findOneOrFail(id);
+    const author = await this.authorRepository.findOneOrFail(id, {
+      populate: ['books'],
+    });
+
     return author;
   }
 

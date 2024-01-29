@@ -1,6 +1,13 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import {
+  Collection,
+  Entity,
+  OneToMany,
+  PrimaryKey,
+  Property,
+} from '@mikro-orm/core';
 import { v4 as uuidv4 } from 'uuid';
 import { AuthorRepository } from '../repositories/author.repository';
+import { BookEntity } from '../../books/entities/book.entity';
 
 @Entity({
   tableName: 'author',
@@ -21,4 +28,7 @@ export class AuthorEntity {
 
   @Property()
   active: boolean;
+
+  @OneToMany({ mappedBy: 'author' })
+  books = new Collection<BookEntity>(this);
 }

@@ -12,9 +12,7 @@ export class BookController {
   constructor(private readonly createBookUseCase: CreateBookUseCase) {}
 
   @Post()
-  async createAuthor(
-    @Body() createBookDto: CreateBookDto,
-  ): Promise<BookEntity> {
+  async createBook(@Body() createBookDto: CreateBookDto): Promise<BookEntity> {
     return this.createBookUseCase.execute(createBookDto);
   }
 }

@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AuthorEntity } from './entities/author.entity';
 import { ListAuthorsUseCase } from './useCases/listAuthors.usecase';
 import { CreateAuthorsUseCase } from './useCases/createAuthor.usecase';
+import { AssignBookUseCase } from './useCases/assignBook.usecase';
 
 interface CreateAuthorDto {
   name: string;
@@ -14,6 +15,7 @@ export class AuthorController {
   constructor(
     private readonly listAuthorsUseCase: ListAuthorsUseCase,
     private readonly createAuthorsUseCase: CreateAuthorsUseCase,
+    private readonly assignBookUseCase: AssignBookUseCase,
   ) {}
 
   @Get(':id')
@@ -26,5 +28,12 @@ export class AuthorController {
     @Body() createAuthorDto: CreateAuthorDto,
   ): Promise<AuthorEntity> {
     return this.createAuthorsUseCase.execute(createAuthorDto);
+  }
+
+  @Post('assign')
+  async assignBook(
+    @Body() createBookDto: { authorId: string; bookId: string },
+  ): Promise<AuthorEntity> {
+    return this.assignBookUseCase.execute(createBookDto);
   }
 }

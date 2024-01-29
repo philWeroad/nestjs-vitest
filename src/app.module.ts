@@ -1,9 +1,10 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { AuthorModule } from './modules/author/author.module';
 import { RequestContextMiddleware } from './middlewares/requestContext.middleware';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 import { EntityCaseNamingStrategy } from '@mikro-orm/core';
+import { AuthorModule } from './modules/author/author.module';
+import { BookModule } from './modules/books/book.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { EntityCaseNamingStrategy } from '@mikro-orm/core';
       persistOnCreate: false,
     }),
     AuthorModule,
+    BookModule,
   ],
   controllers: [],
   providers: [],

@@ -3,7 +3,7 @@ import { AuthorDomainService } from '../author.service';
 import { AuthorEntity } from '../entities/author.entity';
 
 @Injectable()
-export class ListAuthors {
+export class ListAuthorsUseCase {
   constructor(private readonly authorDomainService: AuthorDomainService) {}
 
   async execute(id: string): Promise<AuthorEntity> {

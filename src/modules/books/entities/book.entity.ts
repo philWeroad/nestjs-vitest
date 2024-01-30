@@ -1,4 +1,4 @@
-import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, ManyToOne, PrimaryKey, Property, Rel } from '@mikro-orm/core';
 import { v4 as uuidv4 } from 'uuid';
 import { BookRepository } from '../repositories/book.repository';
 import { AuthorEntity } from '../../author/entities/author.entity';
@@ -19,7 +19,7 @@ export class BookEntity {
   code: string;
 
   @ManyToOne(() => AuthorEntity)
-  author: AuthorEntity;
+  author: Rel<AuthorEntity>;
 
   constructor(properties: { name: string; code: string }) {
     // _.assign(this, properties);

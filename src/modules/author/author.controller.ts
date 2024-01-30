@@ -8,6 +8,12 @@ interface CreateAuthorDto {
   name: string;
   email: string;
   bio?: string;
+  books?: [
+    {
+      name: string;
+      code: string;
+    },
+  ];
 }
 
 @Controller('author')

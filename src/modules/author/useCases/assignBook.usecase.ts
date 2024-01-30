@@ -21,8 +21,6 @@ export class AssignBookUseCase {
 
     await this.authorRepository.persistAndFlush(author);
 
-    console.log(author);
-
     return author;
   }
 }

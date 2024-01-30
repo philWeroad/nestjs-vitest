@@ -6,6 +6,12 @@ export interface IAuthor {
   name: string;
   email: string;
   bio?: string;
+  books?: [
+    {
+      name: string;
+      code: string;
+    },
+  ];
 }
 
 @Injectable()

@@ -49,6 +49,12 @@ describe('CreateAuthorsUseCase', () => {
       name: faker.name.fullName(),
       email: faker.internet.email(),
       bio: faker.helpers.maybe(() => faker.lorem.words(20)),
+      books: [
+        {
+          name: 'Libro 1',
+          code: 'sdfadsfadsf',
+        },
+      ],
     };
     const author = await useCase.execute(params);
 

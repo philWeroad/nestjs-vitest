@@ -31,4 +31,28 @@ export class AuthorEntity {
 
   @OneToMany({ mappedBy: 'author' })
   books = new Collection<BookEntity>(this);
+
+  constructor(properties: ICreateAuthor) {
+    // _.assign(this, properties);
+    Object.assign(this, {
+      name: properties.name,
+      email: properties.email,
+      active: properties.active,
+      bio: properties.bio,
+    });
+
+    this.books.set(properties.books);
+  }
+
+  static create(params: ICreateAuthor): AuthorEntity {
+    return new AuthorEntity(params);
+  }
 }
+
+export type ICreateAuthor = {
+  name: string;
+  email: string;
+  active: boolean;
+  bio?: string;
+  books?: BookEntity[];
+};

@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing';
 import { AuthorDomainService } from '../author.service';
 import { EntityManager } from '@mikro-orm/core';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
-import { mikroOrmSetupForUnitTests } from '../../../../test/unit/mikroorm/mikroorm.setup';
+import { mikroOrmSetupForUnitTests } from '../../mikroorm.setup';
 import { AuthorFactory } from '../../factories/author.factory';
 import { faker } from '@mikro-orm/seeder';
 import { CreateAuthorsUseCase, IAuthor } from './createAuthor.usecase';

@@ -4,7 +4,6 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 import { EntityCaseNamingStrategy } from '@mikro-orm/core';
 import { AuthorModule } from './modules/author/author.module';
-import { BookModule } from './modules/books/book.module';
 
 @Module({
   imports: [
@@ -23,7 +22,6 @@ import { BookModule } from './modules/books/book.module';
       persistOnCreate: false,
     }),
     AuthorModule,
-    BookModule,
   ],
   controllers: [],
   providers: [],

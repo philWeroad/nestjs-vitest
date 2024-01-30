@@ -6,12 +6,6 @@ export default {
   namingStrategy: EntityCaseNamingStrategy,
   entities: ['./dist/**/entities/**/*.entity.js'],
   entitiesTs: ['./src/**/entities/**/*.entity.ts'],
-  //   migrations: {
-  //     path: './src/migrations',
-  //     pattern: /^[\w-]+\d+\.js$/,
-  //     emit: 'js',
-  //     disableForeignKeys: false, //https://github.com/mikro-orm/mikro-orm/issues/190
-  //   },
   debug: true,
   type: 'postgresql',
   dbName: 'vitest',

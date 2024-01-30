@@ -1,12 +1,9 @@
 import { Entity, ManyToOne, PrimaryKey, Property, Rel } from '@mikro-orm/core';
 import { v4 as uuidv4 } from 'uuid';
-import { BookRepository } from '../repositories/book.repository';
-import { AuthorEntity } from '../../author/entities/author.entity';
-// import _ from 'lodash';
+import { AuthorEntity } from './author.entity';
 
 @Entity({
   tableName: 'book',
-  customRepository: () => BookRepository,
 })
 export class BookEntity {
   @PrimaryKey({ type: 'uuid', nullable: false })
@@ -22,7 +19,6 @@ export class BookEntity {
   author: Rel<AuthorEntity>;
 
   constructor(properties: { name: string; code: string }) {
-    // _.assign(this, properties);
     Object.assign(this, properties);
   }
 

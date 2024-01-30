@@ -7,7 +7,7 @@ import {
 } from '@mikro-orm/core';
 import { v4 as uuidv4 } from 'uuid';
 import { AuthorRepository } from '../repositories/author.repository';
-import { BookEntity } from '../../books/entities/book.entity';
+import { BookEntity } from './book.entity';
 
 @Entity({
   tableName: 'author',

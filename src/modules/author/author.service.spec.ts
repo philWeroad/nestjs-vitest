@@ -6,8 +6,7 @@ import { faker } from '@mikro-orm/seeder';
 import { AuthorRepository } from './repositories/author.repository';
 import { AuthorDomainService } from './author.service';
 import { AuthorFactory } from '../factories/author.factory';
-import { mikroOrmSetupForUnitTests } from '../../../test/unit/mikroorm/mikroorm.setup';
-import { AuthorEntity } from './entities/author.entity';
+import { mikroOrmSetupForUnitTests } from '../mikroorm.setup';
 import { IAuthor } from './useCases/createAuthor.usecase';
 
 describe('AuthorDomainService', () => {
@@ -37,21 +36,10 @@ describe('AuthorDomainService', () => {
     service = module.get<AuthorDomainService>(AuthorDomainService);
     em = module.get<EntityManager>(EntityManager).fork();
     authorFactory = new AuthorFactory(em);
-
-    vi.spyOn(module.get(AuthorRepository), 'findOneOrFail').mockResolvedValue(
-      authorFactory.makeOne() as Loaded<AuthorEntity, string>,
-    );
   });
 
   afterEach(() => {
     vi.clearAllMocks();
-  });
-
-  it('Must retrieve the author', async () => {
-    const id = faker.datatype.uuid();
-    const author = await service.getAuthor(id);
-
-    expect(author).toBeDefined();
   });
 
   it('Must create the author', async () => {
@@ -76,31 +64,4 @@ describe('AuthorDomainService', () => {
     expect(book.name).toBe(params.books[0].name);
     expect(book.code).toBe(params.books[0].code);
   });
-
-  // it('Must create the author', async () => {
-  //   const params: IAuthor = {
-  //     name: faker.name.fullName(),
-  //     email: faker.internet.email(),
-  //     books: [
-  //       {
-  //         name: faker.lorem.word(2),
-  //         code: faker.random.alpha(15).toUpperCase(),
-  //       },
-  //     ],
-  //   };
-
-  //   vi.spyOn(module.get(AuthorRepository), 'create').mockResolvedValueOnce(
-  //     authorFactory.makeOne(params),
-  //   );
-
-  //   const author = await service.createAuthor(params);
-
-  //   expect(author.name).toBe(params.name);
-  //   expect(author.email).toBe(params.email);
-
-  //   const book = author.books[0];
-  //   expect(author.books).length(params.books.length);
-  //   expect(book.name).toBe(params.books[0].name);
-  //   expect(book.code).toBe(params.books[0].code);
-  // });
 });

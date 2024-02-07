@@ -9,5 +9,6 @@ export const mikroOrmSetupForUnitTests: MikroOrmModuleSyncOptions = {
   entitiesTs: ["./src/**/entities/*.entity.ts"],
   type: "postgresql",
   dbName: "foo",
-  connect: false
+  connect: false,
+  dynamicImportProvider: (id) => import(id),
 };
